@@ -120,43 +120,7 @@ header {
 }
 
 
-/* Personnalisation du design des tickets */
-.ticket {
-            background-color: var(--secondary-color);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .ticket i {
-            font-size: 32px;
-            color: var(--primary-color);
-        }
-
-        .ticket-text {
-            flex-grow: 1;
-            font-size: 18px;
-            color: #333;
-        }
-
-        .ticket-text strong {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .ticket-show {
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
+    
         /* Styles pour les titres */
         .section-title {
             font-size: 24px;
@@ -235,15 +199,80 @@ a {
 a:hover {
     color: var(--light-gray);
 }
+/* Animation Flip Cards */
+        .perspective {
+            perspective: 1200px;
+        }
 
+        .flip-card {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+        }
 
- 
-    </style>
+        .flip-card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+.course-details {
+    font-size: 16px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.detail-item i {
+    font-size: 18px;
+    color: #3b82f6; /* Couleur bleue pour l'icône */
+    transition: color 0.3s ease;
+}
+
+.detail-item:hover {
+    color: #2563eb; /* Changement de couleur au survol */
+}
+
+.detail-item.promo {
+    color: #ff6b6b; /* Couleur pour la promotion */
+    font-weight: bold;
+}
+
+.detail-item.promo:hover {
+    color: #f43f5e; /* Couleur plus vive au survol */
+}
+
+</style>
 </head>
 <body class="bg-gray-50">
 
     <!-- Header Section -->
-    <header class="py-24 text-white text-center" style="background: linear-gradient(to right, #0771bd, #b7b5c2);">
+    <header class="py-24 text-white text-center" style="background: linear-gradient(to right, #8b889f, #b7b5c2);">
         <div class="absolute top-4 left-4">
             <!-- Logo plus grand en haut à gauche -->
             <img src="logo.png" alt="Logo" class="w-32 h-32">
@@ -255,97 +284,251 @@ a:hover {
         </div>
     </header>
 
-    <!-- Programme du cours -->
-    <section class="bg-gray-50 py-16" data-aos="fade-up">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-6">Nos Formations</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-blue-600 text-white p-8 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 cursor-pointer"
-                    onclick="showDetails('Développement Hybride', '30 heures', '500DT', '450DT', 'Oui', 'Oui')">
-                    <h3 class="text-2xl font-semibold">Développement Web    Hybride</h3>
-                    <p>Apprenez à créer des applications mobiles multi-plateformes avec Flutter et React Native.</p>
-                </div>
-                <div class="bg-green-600 text-white p-8 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 cursor-pointer"
-                    onclick="showDetails('Java Orienté Objet', '20 heures', '500DT', '450DT', 'Oui', 'Oui')">
-                    <h3 class="text-2xl font-semibold">Java Orienté Objet</h3>
-                    <p>Maîtrisez la programmation orientée objet avec Java et ses frameworks.</p>
-                </div>
-                <div class="bg-orange-600 text-white p-8 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 cursor-pointer"
-                    onclick="showDetails('JEE', '50 heures', '800DT', '720DT', 'Oui', 'Oui')">
-                    <h3 class="text-2xl font-semibold">Java JEE</h3>
-                    <p>Apprenez à développer des applications d'entreprise avec Java EE et Spring.</p>
-                </div>
-                <div class="bg-teal-600 text-white p-8 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 cursor-pointer"
-                    onclick="showDetails('Spring Boot et Angular', '30 heures', '800DT', '720DT', 'Oui', 'Non')">
-                    <h3 class="text-2xl font-semibold">Spring Boot et Angular</h3>
-                    <p>Devenez un expert en développement Full Stack avec Spring Boot et Angular.</p>
-                </div>
+       <!-- Programme du cours -->
+<section class="py-16" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6">Nos Formations</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Formation : Développement Web -->
+<div class="perspective">
+    <div class="flip-card">
+        <div class="flip-card-front bg-sky-400 text-white flex flex-col items-center justify-center p-4">
+            <h3 class="text-2xl font-semibold mb-2">Développement Web</h3>
+            <!-- Icônes des technologies -->
+            <div class="flex gap-3 text-3xl">
+                <i class="fab fa-html5 text-orange-500"></i>
+                <i class="fab fa-css3-alt text-blue-500"></i>
+                <i class="fab fa-js text-yellow-500"></i>
+                <i class="fab fa-php text-purple-600"></i>
+                <i class="fab fa-symfony text-gray-900"></i>
             </div>
         </div>
-    </section>
+        <div class="flip-card-back bg-blue-700 text-white p-4 rounded-lg">
+            <p class="course-details flex flex-col gap-2 text-white">
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-clock text-xl text-yellow-300"></i> 
+                    <span class="font-semibold">30 heures</span> 
+                    <span class="text-sm opacity-80">(en cours de weekend)</span>
+                </span> 
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-tag text-xl text-green-300"></i> 
+                    <span class="font-semibold">500DT</span>
+                </span> 
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-percent text-xl text-red-400"></i> 
+                    <span class="font-semibold">450DT</span>
+                    <span class="badge bg-red-500 text-white text-xs py-1 px-3 rounded-full font-bold">réduction</span>
+                </span>
 
-     <!-- Boîte Modale -->
-     <div id="formationModal" class="fixed inset-0 hidden bg-gray-900 bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
-            <h2 id="modalTitle" class="text-2xl font-bold mb-2"></h2>
-            <p id="modalVolume" class="text-gray-600"></p>
-            <p id="modalPrixInit" class="text-gray-600"></p>
-            <p id="modalPrixReduit" class="text-gray-600"></p>
-            <p id="modalEnLigne" class="text-gray-600"></p>
-            <p id="modalPresentiel" class="text-gray-600"></p>
-            <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Fermer</button>
+            </p>
         </div>
     </div>
+</div>
+
+<!-- Formation : Java Orienté Objet -->
+<div class="perspective">
+    <div class="flip-card">
+        <div class="flip-card-front bg-indigo-400 text-white flex flex-col items-center justify-center p-4">
+            <h3 class="text-2xl font-semibold mb-2">Java Orienté Objet</h3>
+            <!-- Icône de Java -->
+            <i class="fab fa-java text-red-600 text-3xl"></i>
+        </div>
+        <div class="flip-card-back bg-blue-700 text-white p-4 rounded-lg">
+            <p class="course-details flex flex-col gap-2 text-white">
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-clock text-xl text-yellow-300"></i> 
+                    <span class="font-semibold">20 heures</span> 
+                    <span class="text-sm opacity-80">(en cours de weekend)</span>
+                </span>
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-tag text-xl text-green-300"></i> 
+                    <span class="font-semibold">500DT</span>
+                </span> 
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-percent text-xl text-red-400"></i> 
+                    <span class="font-semibold">450DT</span>
+                    <span class="badge bg-red-500 text-white text-xs py-1 px-3 rounded-full font-bold">Promo</span>
+                </span>
+
+            
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+<!-- Formation : Java JEE -->
+<div class="perspective">
+    <div class="flip-card">
+        <div class="flip-card-front bg-blue-400 text-white flex flex-col items-center justify-center p-4">
+            <h3 class="text-2xl font-semibold mb-2">Java JEE</h3>
+            <!-- Icônes des technologies -->
+            <div class="flex gap-3 text-3xl">
+                <i class="fab fa-java text-red-500"></i>
+                <i class="fas fa-database text-gray-700"></i>
+            </div>
+        </div>
+        <div class="flip-card-back bg-blue-700 text-white p-4 rounded-lg">
+            <p class="course-details flex flex-col gap-2 text-white">
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-clock text-xl text-yellow-300"></i> 
+                    <span class="font-semibold">30 heures</span> 
+                    <span class="text-sm opacity-80">(en cours de weekend)</span>
+                </span> 
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-tag text-xl text-green-300"></i> 
+                    <span class="font-semibold">800DT</span>
+                </span> 
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-percent text-xl text-red-400"></i> 
+                    <span class="font-semibold">720DT</span>
+                    <span class="badge bg-red-500 text-white text-xs py-1 px-3 rounded-full font-bold">réduction</span>
+                </span>
+
+                <!-- Badges -->
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Formation : Full Stack (Angular 17 & Spring Boot) -->
+<div class="perspective">
+    <div class="flip-card">
+        <div class="flip-card-front bg-blue-500 text-white flex flex-col items-center justify-center p-4">
+            <h3 class="text-2xl font-semibold mb-2">Full Stack (Angular 17 & Spring Boot)</h3>
+            <!-- Icônes des technologies -->
+            <div class="flex gap-3 text-3xl">
+                <i class="fab fa-angular text-red-500"></i>
+                <i class="fab fa-java text-yellow-500"></i>
+                <i class="fas fa-leaf text-green-500"></i>
+            </div>
+        </div>
+        <div class="flip-card-back bg-blue-700 text-white p-4 rounded-lg">
+            <p class="course-details flex flex-col gap-2 text-white">
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-clock text-xl text-yellow-300"></i> 
+                    <span class="font-semibold">30 heures</span> 
+                    <span class="text-sm opacity-80">(en cours de weekend)</span>
+                </span> 
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-tag text-xl text-green-300"></i> 
+                    <span class="font-semibold">800DT</span>
+                </span>
+                <span class="detail-item flex items-center gap-3">
+                    <i class="fas fa-percent text-xl text-red-400"></i> 
+                    <span class="font-semibold">720DT</span>
+                    <span class="badge bg-red-500 text-white text-xs py-1 px-3 rounded-full font-bold">réduction</span>
+                </span>
+
+                
+            </p>
+        </div>
+    </div>
+</div>
 
 
-   <!-- FAQ Section -->
-   <section class="bg-blue-50 py-16" id="faq">
-    <div class="max-w-6xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-6">Questions Fréquemment Posées</h2>
-        <div class="space-y-4">
-            <div class="bg-white shadow-xl rounded-lg">
-                <button class="accordion-button p-6 w-full text-left">
-                    Quelle est la durée de la formation ?
-                </button>
-                <div class="accordion-content p-6">
-                    <p>La formation dure généralement 6 mois, avec des sessions intensives et un apprentissage basé sur des projets pratiques.</p>
-                </div>
+</section>
+<!-- FAQ Section -->
+<section class="bg-gradient-to-r from-indigo-100 to-blue-200 py-16" id="faq">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-6 text-indigo-600 text-center">Questions Fréquemment Posées</h2>
+        <div class="space-y-6">
+            <!-- Première question -->
+            <div class="faq-item bg-white shadow-lg rounded-xl p-5 flex items-center justify-between hover:shadow-2xl transition-shadow">
+                <span class="text-lg font-semibold text-indigo-600">Quelle est la durée de la formation ?</span>
+                <i class="fas fa-chevron-down text-indigo-600 cursor-pointer transform transition-transform duration-300" onclick="toggleAnswer('answer1')"></i>
             </div>
-            <div class="bg-white shadow-xl rounded-lg">
-                <button class="accordion-button p-6 w-full text-left">
-                    Faut-il avoir des connaissances préalables pour suivre la formation ?
-                </button>
-                <div class="accordion-content p-6">
-                    <p>Il est recommandé d'avoir des bases en informatique, mais la formation est conçue pour s'adapter à tous les niveaux. Nous couvrons les bases nécessaires pour chaque module.</p>
-                </div>
+            <div id="answer1" class="answer hidden pl-12 pr-4 py-4 text-left text-gray-600 transition-all duration-300">
+                <p>La formation dure généralement 6 mois, avec des sessions intensives et un apprentissage basé sur des projets pratiques.</p>
             </div>
-            <div class="bg-white shadow-xl rounded-lg">
-                <button class="accordion-button p-6 w-full text-left">
-                    La formation est-elle en ligne ?
-                </button>
-                <div class="accordion-content p-6">
-                    <p>Oui, notre formation est entièrement en ligne, ce qui vous permet d'apprendre à votre rythme et de suivre des cours vidéo, des exercices et des projets pratiques depuis n'importe où.</p>
-                </div>
+
+            <!-- Deuxième question -->
+            <div class="faq-item bg-white shadow-lg rounded-xl p-5 flex items-center justify-between hover:shadow-2xl transition-shadow">
+                <span class="text-lg font-semibold text-indigo-600">Faut-il avoir des connaissances préalables pour suivre la formation ?</span>
+                <i class="fas fa-chevron-down text-indigo-600 cursor-pointer transform transition-transform duration-300" onclick="toggleAnswer('answer2')"></i>
             </div>
-            <div class="bg-white shadow-xl rounded-lg">
-                <button class="accordion-button p-6 w-full text-left">
-                    Quels sont les moyens de paiement ?
-                </button>
-                <div class="accordion-content p-6">
-                    <p>Nous acceptons plusieurs modes de paiement, y compris les cartes bancaires et les paiements par PayPal. Des facilités de paiement peuvent être proposées sur demande.</p>
-                </div>
+            <div id="answer2" class="answer hidden pl-12 pr-4 py-4 text-left text-gray-600 transition-all duration-300">
+                <p>Aucun prérequis n'est nécessaire, nos formations sont adaptées à tous, même en reconversion professionnelle !</p>
             </div>
-            <div class="bg-white shadow-xl rounded-lg">
-                <button class="accordion-button p-6 w-full text-left">
-                    Est-ce que je reçois un certificat à la fin de la formation ?
-                </button>
-                <div class="accordion-content p-6">
-                    <p>Oui, vous recevrez un certificat de fin de formation attestant de vos compétences acquises, ce qui peut être un atout dans votre recherche d'emploi ou pour faire évoluer votre carrière.</p>
-                </div>
+
+            <!-- Troisième question -->
+            <div class="faq-item bg-white shadow-lg rounded-xl p-5 flex items-center justify-between hover:shadow-2xl transition-shadow">
+                <span class="text-lg font-semibold text-indigo-600">La formation est-elle hybride ?</span>
+                <i class="fas fa-chevron-down text-indigo-600 cursor-pointer transform transition-transform duration-300" onclick="toggleAnswer('answer3')"></i>
+            </div>
+            <div id="answer3" class="answer hidden pl-12 pr-4 py-4 text-left text-gray-600 transition-all duration-300">
+                <p>Oui, la formation est disponible en mode hybride : vous pouvez suivre les cours en présentiel ou en ligne selon votre préférence.</p>
+            </div>
+
+            <!-- Quatrième question -->
+            <div class="faq-item bg-white shadow-lg rounded-xl p-5 flex items-center justify-between hover:shadow-2xl transition-shadow">
+                <span class="text-lg font-semibold text-indigo-600">Y a-t-il des travaux pratiques ou des projets ?</span>
+                <i class="fas fa-chevron-down text-indigo-600 cursor-pointer transform transition-transform duration-300" onclick="toggleAnswer('answer4')"></i>
+            </div>
+            <div id="answer4" class="answer hidden pl-12 pr-4 py-4 text-left text-gray-600 transition-all duration-300">
+                <p>Oui, chaque formation inclut des travaux pratiques et des projets pour mettre en application les connaissances acquises.</p>
+            </div>
+
+            <!-- Cinquième question -->
+            <div class="faq-item bg-white shadow-lg rounded-xl p-5 flex items-center justify-between hover:shadow-2xl transition-shadow">
+                <span class="text-lg font-semibold text-indigo-600">Puis-je avoir un certificat à la fin de la formation ?
+            </span>
+                <i class="fas fa-chevron-down text-indigo-600 cursor-pointer transform transition-transform duration-300" onclick="toggleAnswer('answer5')"></i>
+            </div>
+            <div id="answer5" class="answer hidden pl-12 pr-4 py-4 text-left text-gray-600 transition-all duration-300">
+                <p>Oui, chaque formation est certifiée et vous recevrez un certificat agréé par l'État à la fin de votre parcours, attestant de vos compétences acquises, ce qui peut être un atout dans votre recherche d'emploi ou pour faire évoluer votre carrière.</p>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Script pour ouvrir/fermer les réponses -->
+<script>
+    function toggleAnswer(id) {
+        var answer = document.getElementById(id);
+        answer.classList.toggle("hidden");
+        var icon = answer.previousElementSibling.querySelector("i");
+        icon.classList.toggle("transform rotate-180");
+    }
+</script>
+
+<div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Titre avec une couleur moderne -->
+    <h2 class="section-title text-3xl font-bold text-indigo-600 mb-4" data-aos="fade-up">Apprends avec des instructeurs experts</h2>
+    
+    <!-- Description avec une couleur plus douce -->
+    <p class="section-description text-lg text-gray-700 mb-8" data-aos="fade-up" data-aos-delay="100">
+        Les formateurs sont des professionnels du domaine, prêts à partager leur expérience et à t'accompagner dans ta formation.
+    </p>
+
+    <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
+        <!-- Premier ticket avec un fond moderne et une bordure -->
+        <div class="ticket ticket-show aos-item bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg shadow-lg p-4 mb-4 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-check-circle text-2xl mr-3"></i>
+            <div class="ticket-text">
+                <strong>Apprentissage pratique :</strong> Les instructeurs t'enseignent des compétences concrètes à travers des projets réels. Tu acquiers des compétences directement applicables dans le monde professionnel.
+            </div>
+        </div>
+        
+        <!-- Deuxième ticket avec un effet hover plus marqué -->
+        <div class="ticket ticket-show aos-item bg-gradient-to-r from-green-500 to-lime-400 text-white rounded-lg shadow-lg p-4 mb-4 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="400">
+            <i class="fas fa-check-circle text-2xl mr-3"></i>
+            <div class="ticket-text">
+                <strong>Soutien personnalisé :</strong> Reçois des retours et des conseils sur mesure, adaptés à ton style d'apprentissage et à tes objectifs personnels, pour une progression optimisée.
+            </div>
+        </div>
+        
+        <!-- Troisième ticket avec une bordure différente et un effet survol -->
+        <div class="ticket ticket-show aos-item bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-lg shadow-lg p-4 mb-4 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="500">
+            <i class="fas fa-check-circle text-2xl mr-3"></i>
+            <div class="ticket-text">
+                <strong>Conseils d'experts :</strong> Apprends auprès de formateurs expérimentés, alliant expertise du monde réel et pédagogie en ligne, pour te donner les meilleures chances de réussir.
+            </div>
+        </div>
+    </div>
+</div>
 
  <!-- Inscription -->
 <section id="inscription" class="bg-gray-50 py-16">
@@ -358,23 +541,54 @@ a:hover {
         <!-- Formulaire à gauche -->
         <div class="lg:w-1/2 bg-white p-8 rounded-lg shadow-xl">
             <h2 class="text-4xl font-bold mb-6 text-center">Inscrivez-vous Maintenant</h2>
-            <form class="space-y-6">
+            <form class="space-y-6" action="backend_script.php" method="POST">
+                
                 <!-- Champ Nom -->
                 <div>
                     <label for="name" class="block text-lg font-medium text-gray-700">Votre nom</label>
-                    <input type="text" id="name" placeholder="Votre nom" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    <input type="text" id="name" name="name" placeholder="Votre nom" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200" required>
                 </div>
                 
                 <!-- Champ Email -->
                 <div>
                     <label for="email" class="block text-lg font-medium text-gray-700">Votre email</label>
-                    <input type="email" id="email" placeholder="Votre email" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    <input type="email" id="email" name="email" placeholder="Votre email" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+                </div>
+
+                <!-- Champ Téléphone / WhatsApp -->
+                <div>
+                    <label for="phone" class="block text-lg font-medium text-gray-700">Votre téléphone / WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Votre téléphone / WhatsApp" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+                </div>
+
+                <!-- Champ Formation (Liste de formations avec possibilité de choisir plusieurs) -->
+                <div>
+                    <label class="block text-lg font-medium text-gray-700">Choisissez votre formation(s)</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" name="formations[]" value="Développement Web" class="w-5 h-5 rounded focus:ring-2 focus:ring-blue-500">
+                            <span>Développement Web</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" name="formations[]" value="Java Orienté Objet" class="w-5 h-5 rounded focus:ring-2 focus:ring-blue-500">
+                            <span>Java Orienté Objet</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" name="formations[]" value="Full Stack" class="w-5 h-5 rounded focus:ring-2 focus:ring-blue-500">
+                            <span>Java JEE</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" name="formations[]" value="Data Science" class="w-5 h-5 rounded focus:ring-2 focus:ring-blue-500">
+                            <span>Full Stack</span>
+                        </label>
+                       
+                    </div>
                 </div>
 
                 <!-- Champ Message -->
                 <div>
                     <label for="message" class="block text-lg font-medium text-gray-700">Message</label>
-                    <textarea id="message" placeholder="Votre message" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200" rows="4"></textarea>
+                    <textarea id="message" name="message" placeholder="Votre message" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-200" rows="4"></textarea>
                 </div>
 
                 <!-- Bouton d'envoi -->
@@ -386,117 +600,67 @@ a:hover {
     </div>
 </section>
 
-<div class="max-w-6xl mx-auto px-4 py-8">
-    <h2 class="section-title" data-aos="fade-up">Apprends avec des instructeurs experts</h2>
-    <p class="section-description" data-aos="fade-up" data-aos-delay="100">Les formateurs sont des professionnels du domaine, prêts à partager leur expérience et à t'accompagner dans ta formation.</p>
+<!-- Footer -->
 
-    <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
-        <div class="ticket ticket-show aos-item" data-aos="fade-up" data-aos-delay="300">
-            <i class="fas fa-check-circle"></i>
-            <div class="ticket-text">
-                <strong>Apprentissage pratique :</strong> Les instructeurs t'enseignent des compétences concrètes à travers des projets réels. Tu acquiers des compétences directement applicables dans le monde professionnel.
-            </div>
+
+<footer class="bg-gradient-to-r from-gray-600 via-gray-500 to-gray-400 text-white py-10">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col items-center space-y-6">
+
+        <!-- Partie centrale : Logo et phrase -->
+        <div class="text-center">
+            <img src="logo.png" alt="Logo" class="w-32 h-32 mb-4 mx-auto">
+            <p class="text-base md:text-lg font-light italic max-w-md mx-auto">
+                Développez vos compétences et transformez votre avenir professionnel.
+            </p>
         </div>
-        <div class="ticket ticket-show aos-item" data-aos="fade-up" data-aos-delay="400">
-            <i class="fas fa-check-circle"></i>
-            <div class="ticket-text">
-                <strong>Soutien personnalisé :</strong> Reçois des retours et des conseils sur mesure, adaptés à ton style d'apprentissage et à tes objectifs personnels, pour une progression optimisée.
-            </div>
+
+        <!-- Partie basse : Informations de contact -->
+        <div class="flex flex-col md:flex-row justify-center items-center md:items-start text-center md:text-left space-y-4 md:space-y-0 md:space-x-10">
+            <p class="flex items-center text-lg"><i class="fas fa-phone-alt mr-3"></i><strong>70 260 621</strong></p>
+            <p class="flex items-center text-lg"><i class="fas fa-mobile-alt mr-3"></i><strong>23 580 745</strong></p>
+            <p class="flex items-center text-lg"><i class="fas fa-envelope mr-3"></i><strong>gcc.commercial002@gmail.com</strong></p>
+            <p class="flex items-center text-lg"><i class="fas fa-map-marker-alt mr-3"></i><strong>G2C, Avenue Hedi Nouira, à côté de MG Ennasr 2</strong></p>
         </div>
-        <div class="ticket ticket-show aos-item" data-aos="fade-up" data-aos-delay="500">
-            <i class="fas fa-check-circle"></i>
-            <div class="ticket-text">
-                <strong>Conseils d'experts :</strong> Apprends auprès de formateurs expérimentés, alliant expertise du monde réel et pédagogie en ligne, pour te donner les meilleures chances de réussir.
-            </div>
-        </div>
+
     </div>
-</div>
+</footer>
 
 
-   
-      
 
-      <!-- Footer -->
-    <footer class="text-white py-8" style="background: linear-gradient(to right, #0771bd, #b7b5c2);">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <!-- Logo centré -->
-            <div class="mb-4">
-                <img src="logo.png" alt="Logo" class="w-32 h-32 mx-auto">
-            </div>
-
-            <!-- Informations de contact alignées sur la même ligne -->
-            <div class="flex justify-center items-center space-x-8">
-                <p class="flex items-center"><i class="fas fa-phone-alt mr-3"></i><strong></strong> 70 260 621</p>
-                <p class="flex items-center"><i class="fas fa-mobile-alt mr-3"></i><strong></strong> 23 580 745</p>
-                <p class="flex items-center"><i class="fas fa-envelope mr-3"></i><strong></strong> gcc.commercial002@gmail.com</p>
-                <p class="flex items-center"><i class="fas fa-map-marker-alt mr-3"></i><strong></strong> G2C, Avenue Hedi Nouira, à côté de MG Ennasr 2</p>
-            </div>
-        </div>
-    </footer>
-    
 
     <script>
-       
-        // Fonctionnalité d'accordéon avec animation fluide
-        const accButtons = document.querySelectorAll('.accordion-button');
-        accButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const content = this.nextElementSibling;
-                
-                // Vérifier si la réponse est déjà ouverte
-                if (content.classList.contains('open')) {
-                    // Si ouverte, fermer
-                    content.classList.remove('open');
-                } else {
-                    // Fermer toutes les autres réponses
-                    document.querySelectorAll('.accordion-content').forEach(acc => {
-                        acc.classList.remove('open');
-                    });
-                    // Ouvrir la réponse sélectionnée
-                    content.classList.add('open');
-                }
+        // Initialisation AOS
+        AOS.init();
+
+        // Accordéon FAQ
+        document.querySelectorAll(".accordion-button").forEach(button => {
+            button.addEventListener("click", () => {
+                const content = button.nextElementSibling;
+                content.classList.toggle("open");
             });
         });
-     
-        function showDetails(titre, volume, prixInit, prixReduit, enLigne, presentiel) {
-        Swal.fire({
-            title: titre,
-            html: `
-                <div class="text-left text-gray-700 text-lg">
-                    <p class="flex items-center"><strong>⏳ Volume horaire :</strong> <span class="ml-2">${volume} heures</span></p>
-                    <p class="flex items-center"><strong>💰 Prix initial :</strong> <span class="line-through text-red-500 ml-2">${prixInit} </span></p>
-                    <p class="flex items-center"><strong>🔥 Prix réduit :</strong> <span class="text-green-600 font-bold ml-2">${prixReduit} </span></p>
-                    <p class="flex items-center"><strong>🖥️ En ligne :</strong> 
-                        <span class="ml-2">${enLigne === "Oui" ? "✅ Disponible" : "❌ Non disponible"}</span>
-                    </p>
-                    <p class="flex items-center"><strong>🏢 Présentiel :</strong> 
-                        <span class="ml-2">${presentiel === "Oui" ? "✅ Disponible" : "❌ Non disponible"}</span>
-                    </p>
-                </div>
-            `,
-            icon: "info",
-            confirmButtonText: "Fermer",
-            confirmButtonColor: "#4CAF50",
-            background: "#ffffff",
-            color: "#333",
-            width: "45%",
-            backdrop: `
-                rgba(0,0,0,0.6)
-                url("https://i.gifer.com/origin/27/277bf650f16009110e929792646ac5c8_w200.gif")
-                center top
-                no-repeat
-            `,
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
-        });
-    }
 
-        // Initialize AOS library for scroll animations
-        AOS.init();
+        // Formulaire d'inscription
+        document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            Swal.fire("Inscription réussie", "Nous avons reçu votre inscription", "success");
+        });
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        // Vérification que le téléphone est bien un numéro valide
+        const phone = document.getElementById('phone').value;
+        const phoneRegex = /^[0-9]{8,15}$/; // Exemple simple pour vérifier un numéro de téléphone
+        if (!phoneRegex.test(phone)) {
+            alert("Veuillez entrer un numéro de téléphone valide.");
+            event.preventDefault(); // Empêche la soumission du formulaire
+        }
+
+
+        
+    });
+
     </script>
+        
 </body>
 </html>
